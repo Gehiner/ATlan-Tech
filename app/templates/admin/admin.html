@@ -1,0 +1,27 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+        <section class="products-section">
+        <h2>Productos</h2>
+            <div class="products-container"> 
+                {% for producto in productos %}
+                <div class="product-card">
+                    <img src="{{ producto.imagen }}" alt="{{ producto.nombre }}">
+                    <h3>{{ producto.nombre }}</h3>
+                    <span>${{ "%.2f" | format(producto.precio) }}</span>
+                    <span>Stock: {{ producto.stock }}</span>
+                    <div class="opcions-products">
+                        <a href="{{ url_for('main.edit', id=producto.id) }}" class="edit-button">
+                            <img src="{{ url_for('static', filename='Assets/editar.png') }}" alt="boton de editar">
+                        </a>
+                        <form action="{{ url_for('main.delete', id=producto.id) }}" method="POST" class="delete-form">
+                            <button type="submit" class="delete-button">
+                                <img src="{{ url_for('static', filename='Assets/borrar.png') }}" alt="boton de borrar">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}     
+            </div>
+    </section>
+{% endblock %}

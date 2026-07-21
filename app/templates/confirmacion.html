@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="confirmacion-section">
+        <h2>¡Gracias por tu compra, {{ pedido.nombre_cliente }}!</h2>
+        <p>Pedido #{{ pedido.id }}</p>
+        <p>Enviaremos tu pedido a: {{ pedido.direccion }}</p>
+        {% for item in pedido.items %}
+        <div class="confirmacion-item">
+            <p>{{ item.cantidad }} x {{ item.producto.nombre }} — ${{ "%.2f" | format(item.precio_unitario) }} c/u</p>
+        </div>
+        {% endfor %}
+    </section>
+{% endblock %}

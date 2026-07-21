@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="banner">
+        <img src="{{ url_for('static', filename='Assets/banner.png') }}" alt="banner principal" class="img-banner">
+    </section>
+    <section class="products-section" id="products">
+        <h2>Productos</h2>
+        <div class="products-container"> 
+            {% for producto in productos %}
+            <div class="product-card">
+                <img src="{{ producto.imagen }}" alt="{{ producto.nombre }}">
+                <h3>{{ producto.nombre }}</h3>
+                <span>${{ "%.2f" | format(producto.precio) }}</span>
+                <form action="{{ url_for('main.agregar_carrito', id=producto.id) }}" method="POST">
+                    <button type="submit" class="button">Agregar al carrito</button>
+                </form>
+            </div>
+             {% endfor %}     
+        </div>
+    </section>
+    <section class="about-section">
+        <h2>Sobre Nosotros</h2>
+        <p>En Atlan Tech, nos dedicamos a ofrecer productos de alta calidad que mejoran la vida de nuestros clientes. Nuestro compromiso con la innovación y la excelencia nos distingue en el mercado.</p>
+        <div class="about-highlights">
+            <article>
+                <h3>Nuestra misión</h3>
+                <p>Brindar tecnología confiable y accesible para cada hogar y negocio.</p>
+            </article>
+            <article>
+                <h3>Nuestra visión</h3>
+                <p>Ser una marca líder en soluciones tecnológicas con impacto positivo.</p>
+            </article>
+            <article>
+                <h3>Valores</h3>
+                <ul>
+                    <li>Calidad garantizada</li>
+                    <li>Atención personalizada</li>
+                    <li>Innovación constante</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+{% endblock %}

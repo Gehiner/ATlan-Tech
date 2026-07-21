@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="carrito-section">
+        <h2>Tu carrito</h2>
+
+        {% if items %}
+            {% for item in items %}
+            <div class="carrito-item">
+                <img src="{{ item.producto.imagen }}" alt="{{ item.producto.nombre }}" class="carrito-img">
+                <div class="item-container">
+                    <h3>{{ item.producto.nombre }}</h3>
+                    <p>Cantidad: {{ item.cantidad }}</p>
+                    <div>
+                        <form action="{{ url_for('main.restar_carrito', id=item.producto.id) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="button-carrito menos">-</button>
+                        </form>
+                        <span>{{ item.cantidad }}</span>
+                        <form action="{{ url_for('main.agregar_mas_al_carrito', id=item.producto.id) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="button-carrito mas">+</button>
+                        </form>
+                    </div>
+
+                    <p>Subtotal: ${{ "%.2f" | format(item.subtotal) }}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+            <h3 class="total">Total: ${{ "%.2f" | format(total) }}</h3>
+
+            <a href="{{ url_for('main.checkout') }}" class="button button-gap">Finalizar compra</a>
+        {% else %}
+            <p>Tu carrito está vacío.</p>
+        {% endif %}
+    </section>
+{% endblock %}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Atlan tech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header" id="header">
+        <a href="{{ url_for('main.index') }}" class="brand-link">
+            <img src="{{ url_for('static', filename='Assets/logo.png') }}" alt="Logo de la empresa" class="brand-logo">
+        </a>
+        <nav class="main-nav">
+            <a href="{{ url_for('main.index') }}" class="nav-link">Inicio</a>
+            <a href="{{ url_for('main.index') }}#products" class="nav-link">Productos</a>
+            <a href="{{ url_for('main.index') }}#contact" class="nav-link">Contacto</a>
+            <a href="{{ url_for('main.ver_carrito') }}" class="nav-icon-link cart-link">
+                <img src="{{ url_for('static', filename='Assets/jam_shopping-cart.png') }}" alt="icono carrito de compras" class="nav-icon">
+                {% if total_items %}<span class="cart-badge">{{ total_items }}</span>{% endif %}
+            </a>
+            <a href="{{ url_for('auth.login') }}" class="nav-icon-link user-link">
+                <img src="{{ url_for('static', filename='Assets/user.png') }}" alt="icono usuario" class="nav-icon">
+            </a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="site-footer" id="contact">
+        <a href="" class="footer-brand-link">
+            <img src="{{ url_for('static', filename='Assets/logo.png') }}" alt="Logo de la empresa" class="footer-logo">
+        </a>
+        <div class="footer-section footer-about">
+            <p class="footer-text">Si requieres más información, no dudes en contactarnos.</p>
+            <div class="footer-social-links">
+                <a href="" class="social-link">
+                    <img src="{{ url_for('static', filename='Assets/instagram.png') }}" alt="icono instagram" class="social-icon">
+                </a>
+                <a href="" class="social-link">
+                    <img src="{{ url_for('static', filename='Assets/facebook.png') }}   " alt="icono facebook" class="social-icon">
+                </a>
+                <a href="" class="social-link">
+                    <img src="{{ url_for('static', filename='Assets/twiter.png') }}" alt="icono twitter" class="social-icon">
+                </a>
+            </div>
+        </div>
+        <div class="footer-section footer-contact">
+            <p class="footer-contact-title">Contáctanos:</p>
+            <p class="footer-contact-item">Teléfono: +1 123 456 7890</p>
+            <p class="footer-contact-item">Email: info@atlan.tech</p>
+        </div>
+        <div class="footer-section footer-copy">
+            <p>© 2025 Atlan Tech. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

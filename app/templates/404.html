@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="error-section">
+        <h1>Error 404</h1>
+        <p>La página que estás buscando no se encuentra disponible.</p>
+        <a href="{{ url_for('index') }}" class="back-link">Volver a la página principal</a>
+    </section>
+{% endblock %}
