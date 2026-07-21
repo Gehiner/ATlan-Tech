@@ -137,4 +137,4 @@ def setup():
         db.session.add(admin)
         db.session.commit()
         return 'Admin creado exitosamente'
-    return 'El admin ya existe'gir 
+    return 'El admin ya existe'
