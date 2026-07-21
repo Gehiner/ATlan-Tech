@@ -125,16 +125,3 @@ def agregar_mas_al_carrito(id):
     session['carrito'] = carrito
     return redirect(url_for('main.ver_carrito'))
 
-@main.route('/setup')
-def setup():
-    from werkzeug.security import generate_password_hash
-    from app.models import Usuario
-    if not Usuario.query.filter_by(email='admin@atlantech.com').first():
-        admin = Usuario(
-            email='admin@atlantech.com',
-            password=generate_password_hash('admin_kodland2026*')
-        )
-        db.session.add(admin)
-        db.session.commit()
-        return 'Admin creado exitosamente'
-    return 'El admin ya existe'
